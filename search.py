@@ -30,7 +30,10 @@ if insta.syncFromAdressBook(contacts):
         sys.exit(-3)
         
     for item in result["items"]:
-        print item["user"]["extra_display_name"] + " = " + item["user"]["username"]
+        try:
+            print item["user"]["extra_display_name"] + " = " + item["user"]["username"]
+        except:
+            print "UNKNOWN NUMBER = " + item["user"]["username"]
 else:
     print "Faild to get contacts [" + json.loads(insta.lastResponse.text)["message"] + "]"
     sys.exit(-2)
